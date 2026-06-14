@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Saurav AI — Personal AI Assistant powered by Gemini" />
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Saurav AI" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="icon" href="icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Saurav AI</title>
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <div class="logo">✦</div>
+        <div class="header-title">
+          <h1>Saurav AI</h1>
+          <span><span class="online-dot"></span>Personal AI Assistant</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">☀️</button>
+        <button class="icon-btn" id="clear-btn" title="Clear chat" aria-label="Clear chat">🗑️</button>
+      </div>
+    </header>
+
+    <!-- Chat -->
+    <div id="chat-container" role="log" aria-live="polite" aria-label="Chat messages">
+      <!-- Welcome Screen -->
+      <div id="welcome">
+        <div class="welcome-logo">✦</div>
+        <h2>Hi, I'm Saurav AI</h2>
+        <p>Your personal AI assistant. Ask me anything — I'm here to help.</p>
+        <div class="suggestions">
+          <button class="suggestion-chip" data-prompt="Explain quantum computing in simple terms">
+            <span class="chip-icon">⚛️</span>Explain quantum computing
+          </button>
+          <button class="suggestion-chip" data-prompt="Write a short poem about the ocean">
+            <span class="chip-icon">✍️</span>Write me a poem
+          </button>
+          <button class="suggestion-chip" data-prompt="What are the best productivity tips for developers?">
+            <span class="chip-icon">💡</span>Productivity tips
+          </button>
+          <button class="suggestion-chip" data-prompt="Help me debug my code. What should I know?">
+            <span class="chip-icon">🐛</span>Help with coding
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div id="input-area">
+      <div class="input-wrapper">
+        <textarea
+          id="message-input"
+          placeholder="Message Saurav AI…"
+          rows="1"
+          maxlength="4000"
+          aria-label="Message input"
+          autocomplete="off"
+          spellcheck="true"
+        ></textarea>
+        <button id="send-btn" disabled aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div class="char-count" id="char-count">0 / 4000</div>
+    </div>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
